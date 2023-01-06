@@ -127,3 +127,19 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# For the vercel deployment because `venv` will br replaced by `api` directory.
+src/.vercel
+src/bin
+src/include
+src/lib
+src/pyvenv.cfg
+src/logs/api_general.log
+src/var
+src/lib64
+
+# Other Environments
+.env-develop
+.env-staging
+.env-prod
+.env-production
