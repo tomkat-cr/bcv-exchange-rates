@@ -43,23 +43,30 @@ if [ "$1" = "clean" ]; then
     rm -rf include ;
     rm -rf lib ;
     rm -rf pyvenv.cfg ;
+    rm -rf ../.vercel/cache ;
     ls -lah
 fi
 
 if [[ "$1" = "run_module" || "$1" = "" ]]; then
     echo "Run module only..."
-    python index.py cli
+    echo "pwd: $(pwd)"
+    echo ""
+    python -m index cli
+    echo ""
     echo "Done..."
 fi
 
-if [[ "$1" = "run" || "$1" = "" ]]; then
+if [ "$1" = "run" ]; then
     echo "Run..."
+    cd ..
     vercel dev --listen 0.0.0.0:5001 ;
     echo "Done..."
 fi
 if [ "$1" = "deploy_prod" ]; then
+    cd ..
     vercel --prod ;
 fi
 if [ "$1" = "rename_staging" ]; then
-    vercel alias $2 ${PROJECT_NAME}-staging-tomkat-cr.vercel.app
+    cd ..
+    vercel alias $2 ${APP_NAME}-staging-tomkat-cr.vercel.app
 fi
