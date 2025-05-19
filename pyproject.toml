@@ -1,0 +1,60 @@
+[project]
+name = "bcv-exchange-rates"
+version = "1.1.0"
+authors = [
+    { name="Carlos J. Ramirez", email="tomkat_cr@yahoo.com" }
+]
+description = "Mediabros Currency Exchange API series / Venezuelan Bolivares (BCV)"
+readme = "README.md"
+requires-python = ">=3.9,<4.0"
+classifiers = [
+    'Development Status :: 3 - Alpha',
+    'Environment :: Console',
+    'Intended Audience :: Developers',
+    "Programming Language :: Python :: 3",
+    'Programming Language :: Python :: 3.9',
+    'Programming Language :: Python :: 3.10',
+    'Programming Language :: Python :: 3.11',
+    'Programming Language :: Python :: 3.12',
+    "Operating System :: OS Independent",
+    'Topic :: Software Development',
+]
+dynamic = [
+    "license",
+]
+
+[project.urls]
+Homepage = "https://github.com/tomkat-cr/bcv-exchange-rates"
+Issues = "https://github.com/tomkat-cr/bcv-exchange-rates/issues"
+
+[tool.poetry]
+name = "bcv-exchange-rates"
+version = "1.0.0"
+description = "Mediabros Currency Exchange API series / Venezuelan Bolivares (BCV)"
+authors = ["Carlos J. Ramirez <tomkat_cr@yahoo.com>"]
+license = "ISC"
+readme = "README.md"
+repository = "https://github.com/tomkat-cr/bcv-exchange-rates.git"
+homepage = "https://github.com/tomkat-cr/bcv-exchange-rates"
+packages = [
+    { include = "bcv_exchange_rates" }
+]
+
+[tool.poetry.dependencies]
+python = ">=3.9,<4.0"
+beautifulsoup4 = "^4.13.4"
+requests = "^2.32.3"
+setuptools = "^80.7.1"
+
+[tool.poetry.group.dev.dependencies]
+changelog-cli = "^0.7.1"
+mypy = "^0.931"
+pylint = "^3.1.0"
+pytest = "^7.0.1"
+pytest-cov = "^3.0.0"
+yapf = "^0.32.0"
+coverage = "^7.2.7"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

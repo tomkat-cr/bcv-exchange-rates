@@ -1,10 +1,10 @@
-import json
+# import json
 import sys
 
 from fastapi import FastAPI
 from a2wsgi import ASGIMiddleware
 
-from get_bcv_exchange_rates import get_bcv_exchange_rates
+from bcv import get_bcv_exchange_rates
 
 
 def get_command_line_args():
@@ -20,15 +20,17 @@ def get_command_line_args():
 
 params = get_command_line_args()
 if params['mode'] == 'cli':
-    apiResponse = get_bcv_exchange_rates()
-    print(apiResponse)
+    print("")
+    print("BCV Exchange Rates")
+    print(get_bcv_exchange_rates())
+
 
 api = FastAPI()
 app = ASGIMiddleware(api)
 
 
-@api.get("/get_exchange_rates")
-def get_rates():
+@api.get("/get_bcv_exchange_rates")
+def get_bcv_rates():
     api_response = get_bcv_exchange_rates()
     # return json.dumps(api_response)
     return api_response

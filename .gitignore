@@ -129,14 +129,14 @@ dmypy.json
 .pyre/
 
 # For the vercel deployment because `venv` will br replaced by `api` directory.
-src/.vercel
-src/bin
-src/include
-src/lib
-src/pyvenv.cfg
-src/logs/api_general.log
-src/var
-src/lib64
+bcv_exchange_rates/.vercel
+bcv_exchange_rates/bin
+bcv_exchange_rates/include
+bcv_exchange_rates/lib
+bcv_exchange_rates/pyvenv.cfg
+bcv_exchange_rates/logs/api_general.log
+bcv_exchange_rates/var
+bcv_exchange_rates/lib64
 
 # Other Environments
 .env-develop

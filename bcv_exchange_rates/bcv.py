@@ -1,18 +1,11 @@
 # get_bcv_exchange_rates.py
 # 2023-01-05 | CR
 
-import datetime
 import warnings
 from bs4 import BeautifulSoup
 import requests
 
-
-def get_formatted_date():
-    date_format = "%Y-%m-%d %H:%M:%S UTC"
-    formatted_date = datetime.date.strftime(
-        datetime.datetime.utcnow(), date_format
-    )
-    return formatted_date
+from utilities import get_formatted_date
 
 
 def get_currency_section_value(soup, apiResponse, currency):
