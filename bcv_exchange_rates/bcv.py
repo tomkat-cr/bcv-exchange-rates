@@ -8,6 +8,11 @@ import requests
 from utilities import get_formatted_date
 
 
+def fix_value(value):
+    value = value.replace(",", ".")
+    return float(value)
+
+
 def get_currency_section_value(soup, apiResponse, currency):
     error_message = []
     error_flag = False
@@ -42,7 +47,7 @@ def get_currency_section_value(soup, apiResponse, currency):
             error_message = f'The <strong> in 2nd <div> not found | {str(err)}'
     # Scrape the <span> element, get the text attribute
     if not error_flag:
-        exchange_value = exchange_value.replace(',', '.')
+        exchange_value = fix_value(exchange_value)
         try:
             currency_symbol = secondDiv.find("span").text.strip()
         except Exception as err:
