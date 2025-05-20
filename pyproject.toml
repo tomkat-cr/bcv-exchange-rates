@@ -1,5 +1,5 @@
 [project]
-name = "bcv-exchange-rates"
+name = "bcv_exchange_rates"
 version = "1.1.0"
 authors = [
     { name="Carlos J. Ramirez", email="tomkat_cr@yahoo.com" }
@@ -28,7 +28,7 @@ Homepage = "https://github.com/tomkat-cr/bcv-exchange-rates"
 Issues = "https://github.com/tomkat-cr/bcv-exchange-rates/issues"
 
 [tool.poetry]
-name = "bcv-exchange-rates"
+name = "bcv_exchange_rates"
 version = "1.0.0"
 description = "Mediabros Currency Exchange API series / Venezuelan Bolivares (BCV)"
 authors = ["Carlos J. Ramirez <tomkat_cr@yahoo.com>"]

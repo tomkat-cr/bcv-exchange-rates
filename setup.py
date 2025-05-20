@@ -1,7 +1,7 @@
 from setuptools import setup
 
 setup(
-    name="bcv-exchange-rates",
+    name="bcv_exchange_rates",
     version="1.1.0",
     author="Carlos J. Ramirez",
     author_email="tomkat_cr@yahoo.com",
