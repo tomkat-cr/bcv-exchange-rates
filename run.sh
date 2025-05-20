@@ -77,10 +77,11 @@ fi
 
 if [[ "$1" = "run_module" || "$1" = "run" || "$1" = "" ]]; then
     run_venv
+    cd ..
     echo "Run module only..."
     echo "pwd: $(pwd)"
     echo ""
-    python -m index cli
+    python -m bcv_exchange_rates.index cli
     echo ""
     echo "Done..."
 fi

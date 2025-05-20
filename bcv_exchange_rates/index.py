@@ -4,7 +4,7 @@ import sys
 from fastapi import FastAPI
 from a2wsgi import ASGIMiddleware
 
-from bcv import get_bcv_exchange_rates
+from bcv_exchange_rates.bcv import get_bcv_exchange_rates
 
 
 def get_command_line_args():

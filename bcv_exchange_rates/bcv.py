@@ -5,7 +5,7 @@ import warnings
 from bs4 import BeautifulSoup
 import requests
 
-from utilities import get_formatted_date
+from bcv_exchange_rates.utilities import get_formatted_date
 
 
 def fix_value(value):

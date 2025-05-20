@@ -26,6 +26,7 @@ Add poetry configuration to make the project ready to be used as a package.
 
 ### Changes
 Rename "src" folder to "bcv_exchange_rates" to match the project name.
+Return values as float instead of string.
 
 ### Fixes
 Update dependencies to latest versions to fix Snyk alerts.
