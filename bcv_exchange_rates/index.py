@@ -1,5 +1,5 @@
-# import json
 import sys
+import json
 
 from fastapi import FastAPI
 from a2wsgi import ASGIMiddleware
@@ -20,9 +20,7 @@ def get_command_line_args():
 
 params = get_command_line_args()
 if params['mode'] == 'cli':
-    print("")
-    print("BCV Exchange Rates")
-    print(get_bcv_exchange_rates())
+    print(json.dumps(get_bcv_exchange_rates()))
 
 
 api = FastAPI()

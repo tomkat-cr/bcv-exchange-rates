@@ -1,69 +1,48 @@
 # get_bcv_exchange_rates.py
 # 2023-01-05 | CR
-
-import warnings
 from bs4 import BeautifulSoup
 import requests
+import warnings
 
-from bcv_exchange_rates.utilities import get_formatted_date
-
-
-def fix_value(value):
-    value = value.replace(",", ".")
-    return float(value)
+from bcv_exchange_rates.utilities import (
+    get_formatted_date,
+    fix_value,
+    convert_spanish_date,
+)
 
 
 def get_currency_section_value(soup, apiResponse, currency):
-    error_message = []
-    error_flag = False
-    exchange_value = None
-    currency_symbol = None
-    # Locate the element with id "dolar" (or "rubro" or "euro")
+    apiResponse['data'][currency] = {
+        'symbol': None,
+        'value': None,
+        'error': False,
+        'error_message': None
+    }
+
+    currency_section = soup.find("div", {"id": currency})
+    if not currency_section:
+        apiResponse['data'][currency]['error'] = True
+        apiResponse['data'][currency]['error_message'] = \
+            f'id "{currency}" not found'
+        return
+
     try:
-        currencySection = soup.find("div", {"id": currency})
+        strong_tag = currency_section.find("strong")
+        span_tag = currency_section.find("span")
+
+        if strong_tag and span_tag:
+            exchange_value = fix_value(strong_tag.text.strip())
+            currency_symbol = span_tag.text.strip()
+
+            apiResponse['data'][currency]['symbol'] = currency_symbol
+            apiResponse['data'][currency]['value'] = exchange_value
+        else:
+            raise ValueError("Required tags not found")
+
     except Exception as err:
-        error_flag = True
-        error_message = f'id "{currency}" not found | {str(err)}'
-    # Scrape the first <div> inside it
-    if not error_flag:
-        try:
-            firstDiv = currencySection.find("div")
-        except Exception as err:
-            error_flag = True
-            error_message = f'1st <div> not found | {str(err)}'
-    # Scrape the second <div> inside that first <div>
-    if not error_flag:
-        try:
-            secondDiv = firstDiv.find("div")
-        except Exception as err:
-            error_flag = True
-            error_message = f'2nd <div> not found | {str(err)}'
-    # Scrape the <strong> element, get the text attribute
-    if not error_flag:
-        try:
-            exchange_value = secondDiv.find("strong").text.strip()
-        except Exception as err:
-            error_flag = True
-            error_message = f'The <strong> in 2nd <div> not found | {str(err)}'
-    # Scrape the <span> element, get the text attribute
-    if not error_flag:
-        exchange_value = fix_value(exchange_value)
-        try:
-            currency_symbol = secondDiv.find("span").text.strip()
-        except Exception as err:
-            error_flag = True
-            error_message = f'The <span> in 2nd <div> not found | {str(err)}'
-
-    apiResponse['data'][currency] = dict()
-    apiResponse['data'][currency]['symbol'] = currency_symbol
-    apiResponse['data'][currency]['value'] = exchange_value
-
-    if error_flag:
-        apiResponse['error'] = True
-        apiResponse['error_message'].append(
-            f'ERROR(s) on id "{currency}"'
-        )
-        apiResponse['data'][currency]['error_message'] = error_message
+        apiResponse['data'][currency]['error'] = True
+        apiResponse['data'][currency]['error_message'] = \
+            f'Error processing id "{currency}": {str(err)}'
 
 
 def get_bcv_exchange_rates():
@@ -102,9 +81,9 @@ def get_bcv_exchange_rates():
 
     # Locate the <span> element with class "date-display-single".
     # get the text attribute
-    effective_date = None
+    effective_date_str = None
     try:
-        effective_date = soup.find(
+        effective_date_str = soup.find(
             "span", {"class": "date-display-single"}
         ).text.strip()
     except Exception as err:
@@ -114,7 +93,9 @@ def get_bcv_exchange_rates():
             f' the effective_date value not found | {str(err)}'
         )
 
-    apiResponse['data']['effective_date'] = effective_date
+    apiResponse['data']['effective_date'] = effective_date_str
+    apiResponse['data']['effective_date_ymd'] = \
+        convert_spanish_date(effective_date_str)
     apiResponse['data']['run_timestamp'] = get_formatted_date()
 
     return apiResponse

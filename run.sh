@@ -81,7 +81,13 @@ if [[ "$1" = "run_module" || "$1" = "run" || "$1" = "" ]]; then
     echo "Run module only..."
     echo "pwd: $(pwd)"
     echo ""
-    python -m bcv_exchange_rates.index cli
+    echo "BCV Exchange Rates"
+    echo ""
+    if jq --version > /dev/null 2>&1; then
+        python -m bcv_exchange_rates.index cli | jq .
+    else
+        python -m bcv_exchange_rates.index cli
+    fi
     echo ""
     echo "Done..."
 fi

@@ -17,6 +17,12 @@ clean:
 update:
 	${SHELL} ./run.sh update
 
+install:
+	poetry install
+
+test:
+	poetry run pytest
+
 run:
 	${SHELL} ./run.sh
 
