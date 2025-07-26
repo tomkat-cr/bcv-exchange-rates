@@ -24,6 +24,7 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Ch
 Add poetry configuration to make the project ready to be used as a package [GS-204].
 Add unit tests [GS-204].
 Add 'effective_date_ymd' to the API response with the spanish date format converted to YYYY-MM-DD [GS-204].
+Add timeout and SSL verification settings for BCV API requests [GS-204].
 
 ### Changes
 Rename "src" folder to "bcv_exchange_rates" to match the project name [GS-204].

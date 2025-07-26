@@ -10,6 +10,9 @@ from bcv_exchange_rates.utilities import (
     convert_spanish_date,
 )
 
+DEFAULT_TIMEOUT = 10    # seconds
+ALTERNATIVE_VERIFY = False  # False to ignore SSL errors
+
 
 def get_currency_section_value(soup, apiResponse, currency):
     apiResponse['data'][currency] = {
@@ -55,12 +58,16 @@ def get_bcv_exchange_rates():
     url = "https://www.bcv.org.ve"
 
     try:
-        response = requests.get(url=url)
+        response = requests.get(url=url, timeout=DEFAULT_TIMEOUT)
     except requests.exceptions.SSLError:
         try:
             with warnings.catch_warnings():
                 warnings.simplefilter("ignore")
-                response = requests.get(url=url, verify=False)
+                response = requests.get(
+                    url=url,
+                    verify=ALTERNATIVE_VERIFY,
+                    timeout=DEFAULT_TIMEOUT
+                )
         except Exception as err:
             apiResponse['error'] = True
             apiResponse['error_message'].append(str(err))
