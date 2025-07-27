@@ -1,16 +1,16 @@
 {
     "version": 2,
-    "outputDirectory": "src",
+    "outputDirectory": "bcv_exchange_rates",
     "builds": [
         {
-            "src": "src/index.py",
+            "src": "bcv_exchange_rates/index.py",
             "use": "@vercel/python"
         }
     ],
     "routes": [
         {
             "src": "/(.*)",
-            "dest": "src/index.py"
+            "dest": "bcv_exchange_rates/index.py"
         }
     ]
 }

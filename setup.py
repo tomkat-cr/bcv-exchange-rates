@@ -1,12 +1,17 @@
 from setuptools import setup
 
 setup(
-    name="bcv-exchange-rates",
-    version="1.0.0",
+    name="bcv_exchange_rates",
+    version="1.1.0",
     author="Carlos J. Ramirez",
-    author_email="cramirez@mediabros.com",
-    description="A python module to get exchange rates from bcv.org.ve",
-    packages=["bcv-exchange-rates"],
-    install_requires=["requests", "beautifulsoup4", "a2wsgi"],
+    author_email="tomkat_cr@yahoo.com",
+    description=(
+        "Mediabros Currency Exchange API series / Venezuelan Bolivares (BCV)"
+    ),
+    packages=["bcv_exchange_rates"],
+    install_requires=[
+        "beautifulsoup4",
+        "requests",
+    ],
     zip_safe=False
 )
