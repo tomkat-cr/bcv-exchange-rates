@@ -384,11 +384,11 @@ Las API son mecanismos que permiten a dos componentes de software o programas co
 
 API son las siglas de "interfaz de programación de aplicaciones". En el contexto de las API, la palabra aplicación se refiere a cualquier software o programa con funciones distintas y/o independientes. La interfaz puede considerarse como un contrato de servicio entre dos aplicaciones. Este contrato define cómo se comunican entre sí mediante solicitudes y respuestas. La documentación de su API debe contener información sobre cómo los desarrolladores deben estructurar esas solicitudes y respuestas.
 
-## License
+## Licencia
 
-Este proyecto está licenciado bajo la Licencia MIT - consulte el archivo [LICENSE](LICENSE) para más detalles.
+Este proyecto está bajo la Licencia MIT. Consulta el archivo [LICENSE](LICENSE) para más detalles.
 
-## Credits
+## Créditos
 
 Este proyecto es desarrollado y mantenido por [Carlos J. Ramirez](https://github.com/tomkat-cr). Para más información o para contribuir al proyecto, visite [BCV Exchange Rates](https://github.com/tomkat-cr/bcv-exchange-rates).
 
